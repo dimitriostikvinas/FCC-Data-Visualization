@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto';
+    background-color: #708090;
+    overflow: hidden;
+}
+
+#container{
+    height: 800px;
+    width: 1200px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 2px 2px 20px;
+}
+
+#container > #title {
+    text-align: center;
+    font-size: 2.5em;
+}
+#container > #subtitle {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#tooltip {
+    position: absolute; 
+    opacity: 0; 
+    text-align: center;
+    pointer-events: none; 
+    padding: 10px; 
+    background-color: rgb(46, 172, 84); 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}

@@ -1,0 +1,88 @@
+<script>
+  // Wait for the DOM to be fully loaded
+  document.addEventListener('DOMContentLoaded', function(){
+    // Add an event handler to the element with the ID `sendMessage`
+    document.getElementById('sendMessage').onclick = function(){
+      
+      // Retrieve the value entered in the text input with the ID `name`
+      const userName = document.getElementById('name').value;
+
+      // Specify the URL of the server where the POST request will be sent
+      const url = 'https://jsonplaceholder.typicode.com/posts';
+
+      // Add your code below this line
+
+      // Create a new XMLHttpRequest object for sending the POST request
+      const xhr = new XMLHttpRequest();
+
+      // Initialize the request to use the POST method and specify the server URL
+      xhr.open('POST', url, true);
+
+      // Set the appropriate content type for sending JSON data
+      xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+      // Create a JSON string containing the data to be sent in the request body
+      const body = JSON.stringify({ userName: userName, suffix: ' loves cats!' });
+
+      // Send the POST request to the server with the JSON body
+      xhr.send(body);
+	
+      // Define a function to handle the server response
+      xhr.onreadystatechange = function(){
+        // Check if the request is completed (readyState 4) and was successful (status 201)
+        if (xhr.readyState === 4 && xhr.status === 201){
+          // Parse the server response as JSON
+          const serverResponse = JSON.parse(xhr.response);
+
+          // Set the content of the first element with the class `message`
+          // to include the user name and a suffix, confirming the data was received
+          document.getElementsByClassName('message')[0].textContent = serverResponse.userName + serverResponse.suffix;
+        }
+      };
+
+
+      // Add your code above this line
+    };
+  });
+</script>
+
+
+<style>
+  body {
+    text-align: center;
+    font-family: "Helvetica", sans-serif;
+  }
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  .box {
+    border-radius: 5px;
+    background-color: #eee;
+    padding: 20px 5px;
+  }
+  button {
+    color: white;
+    background-color: #4791d0;
+    border-radius: 5px;
+    border: 1px solid #4791d0;
+    padding: 5px 10px 8px 10px;
+  }
+  button:hover {
+    background-color: #0F5897;
+    border: 1px solid #0F5897;
+  }
+</style>
+
+<h1>Cat Friends</h1>
+<p class="message box">
+  Reply from Server will be here
+</p>
+<p>
+  <label for="name">Your name:
+    <input type="text" id="name"/>
+  </label>
+  <button id="sendMessage">
+    Send Message
+  </button>
+</p>
